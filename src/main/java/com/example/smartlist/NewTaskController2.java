@@ -4,72 +4,56 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+public class NewTaskController2 {
+    @FXML
+    private TextField fieldTitle;
+    @FXML
+    private TextField fieldDesc;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private ComboBox<String> categoryBox;
+    @FXML
+    private ComboBox<String> priorityBox;
+    @FXML
+    private Button saveButton;
 
-public class NewTaskController {
-    @FXML
-    private TextField newtitlefield;
-    @FXML
-    private TextField newdescriptionfield;
-    @FXML
-    private DatePicker duedatee;
-    @FXML
-    private ComboBox<String> categoryy;
-    @FXML
-    private ComboBox<String> priorityy;
-    @FXML
-    private Button buttonSave;
-
-    private final String FILE_PATH = "tasks.json";
+    private final String FILE_PATH2 = "tasks.json";
 
     @FXML
     public void initialize() {
-        if(categoryy != null) categoryy.getItems().addAll("Work", "Personal", "Health", "Finance", "Other");
-        if(priorityy != null) priorityy.getItems().addAll("1", "2", "3", "4", "5");
+        if(categoryBox != null) categoryBox.getItems().addAll("School", "Personal");
+        if(priorityBox != null) priorityBox.getItems().addAll("High", "Medium", "Low");
     }
+
     @FXML
     public void buttonSave(){
-        String title = newtitlefield.getText();
-        String description = newdescriptionfield.getText();
+        String title = fieldTitle.getText();
+        String description = fieldDesc.getText();
 
         if(title.isEmpty()){
             return;
         }
 
-        ToDo newTask = new ToDo(title, description, duedatee.getValue(), categoryy.getValue(), priorityy.getValue() );
+        ToDo newTask = new ToDo(title, description, datePicker.getValue(), categoryBox.getValue(), priorityBox.getValue() );
 
         List<ToDo>allTasks = loadCurrentTasks();
         allTasks.add(newTask);
         saveAllTasks(allTasks);
 
-        Stage stage = (Stage) buttonSave.getScene().getWindow();
+        Stage stage = (Stage) saveButton.getScene().getWindow();
         stage.close();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("myGUI.fxml"));
-        Parent root = null;
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // C. Create and Show the Main Window
-        Stage mainStage = new Stage();
-        mainStage.setTitle("TO DO LIST");
-        mainStage.setScene(new Scene(root));
-        mainStage.show();
     }
 
     private List<ToDo> loadCurrentTasks() {
-        File file = new File(FILE_PATH);
+        File file = new File(FILE_PATH2);
         if (!file.exists()) return new ArrayList<>(); // Return empty list if file doesn't exist
 
         try (Reader reader = new FileReader(file)) {
@@ -91,10 +75,9 @@ public class NewTaskController {
     }
 
     private void saveAllTasks(List<ToDo> tasks){
-        try(Writer writer = new FileWriter(FILE_PATH)){
+        try(Writer writer = new FileWriter(FILE_PATH2)){
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(tasks, writer);
         }catch(IOException e) { e.printStackTrace(); }
     }
-
 }

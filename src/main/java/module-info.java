@@ -4,6 +4,6 @@ module com.example.smartlist {
     requires com.google.gson;
 
 
-    opens com.example.smartlist to javafx.fxml;
+    opens com.example.smartlist to javafx.fxml, com.google.gson;
     exports com.example.smartlist;
 }
