@@ -9,13 +9,29 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class ViewTaskController implements Initializable {
+public class ViewTaskController  {
+
+    @FXML
+    private TableView<ToDo> table;
+
+    @FXML
+    private TableColumn<ToDo, String> titlecolumn;
+
+    @FXML
+    private TableColumn<ToDo, String> descriptioncolumn;
+
+    @FXML
+    private TableColumn<ToDo, LocalDate> duedatecolumn;
+
+    @FXML
+    private TableColumn<ToDo, String> categorycolumn;
+
+    @FXML
+    private TableColumn<ToDo, Integer> prioritycolumn;
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 }

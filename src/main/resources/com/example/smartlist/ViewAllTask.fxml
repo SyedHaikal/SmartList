@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane minWidth="-Infinity" prefHeight="646.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smartlist.ViewTaskController">
     <children>
         <TableView fx:id="table" layoutX="1.0" layoutY="96.0" prefHeight="394.0" prefWidth="737.0">
             <columns>
-                <TableColumn fx:id="title" prefWidth="112.0" text="TITLE" />
-                <TableColumn fx:id="description" minWidth="0.0" prefWidth="144.0" text="DESCRIPTION" />
+                <TableColumn fx:id="titlecolumn" prefWidth="112.0" text="TITLE" />
+                <TableColumn fx:id="descriptioncolumn" minWidth="0.0" prefWidth="144.0" text="DESCRIPTION" />
+                <TableColumn fx:id="duedatecolumn" prefWidth="115.0" text="DUE DATE" />
+                <TableColumn fx:id="categorycolumn" prefWidth="100.0" text="CATEGORY" />
+                <TableColumn fx:id="prioritycolumn" prefWidth="85.0" text="PRIORITY" />
             </columns>
         </TableView>
-        <TextField fx:id="titlefield" layoutX="104.0" layoutY="14.0" />
-        <TextField fx:id="descfield" layoutX="104.0" layoutY="54.0" />
-        <Label layoutX="31.0" layoutY="18.0" text="Ttile" />
-        <Label layoutX="24.0" layoutY="58.0" text="Description" />
-        <Button layoutX="287.0" layoutY="54.0" mnemonicParsing="false" text="Add" />
     </children>
 </AnchorPane>
